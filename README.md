@@ -1,4 +1,4 @@
-# LoanPredict AI 🤖✨
+# LoanPredict AI 
 
 > Precision lending workflow powered by a hyperparameter-tuned K-Nearest Neighbors (KNN) architecture.
 
@@ -9,7 +9,7 @@
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
 *   **Real-time Risk Scoring:** Instantly calculates loan approval metrics (Approved/Denied) with confidence score dial.
 *   **Explainable AI (XAI) Neighbors Map:** Projects multidimensional feature data into 2D coordinates using **Principal Component Analysis (PCA)**. Displays the 5 closest historical training samples with custom tooltip details.
@@ -18,7 +18,7 @@
 
 ---
 
-## 📂 Project Architecture
+##  Project Architecture
 
 ```text
 ├── backend/                  # FastAPI Application
@@ -39,7 +39,7 @@
 
 ---
 
-## ⚡ Quick Start
+##  Quick Start
 
 ### 1. Backend Server Setup
 
@@ -73,7 +73,7 @@ npm run dev
 
 ---
 
-## 📊 KNN Algorithm Metrics
+##  KNN Algorithm Metrics
 
 *   **Accuracy (Default k=5):** 84.55%
 *   **Accuracy (Tuned k=16):** **85.37%**
@@ -81,7 +81,7 @@ npm run dev
 
 ---
 
-## 🔒 Security Configuration
+##  Security Configuration
 
 *   **AES-256** mock encryption status indicators.
 *   Secure cors middleware enabled for institutional frontend connection.
