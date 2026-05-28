@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.env
+*.venv
+venv/
+ENV/
+env/
+*.joblib
+
+# Next.js / Node
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/.env*.local
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+*.png

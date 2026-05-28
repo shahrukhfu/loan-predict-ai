@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LoanPredict AI | New Prediction</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Geist:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffdadb",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-primary-container": "#0d0096",
+                    "error-container": "#93000a",
+                    "tertiary": "#ffb2b7",
+                    "background": "#131313",
+                    "on-tertiary": "#67001b",
+                    "secondary": "#4edea3",
+                    "on-secondary-container": "#00311f",
+                    "on-secondary-fixed": "#002113",
+                    "on-primary": "#1000a9",
+                    "secondary-fixed-dim": "#4edea3",
+                    "surface-container": "#201f1f",
+                    "secondary-container": "#00a572",
+                    "outline-variant": "#464554",
+                    "surface-container-lowest": "#0e0e0e",
+                    "primary": "#c0c1ff",
+                    "inverse-primary": "#494bd6",
+                    "on-surface-variant": "#c7c4d7",
+                    "surface-tint": "#c0c1ff",
+                    "on-error": "#690005",
+                    "outline": "#908fa0",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-highest": "#353534",
+                    "error": "#ffb4ab",
+                    "surface-variant": "#353534",
+                    "on-tertiary-fixed-variant": "#92002a",
+                    "on-surface": "#e5e2e1",
+                    "on-background": "#e5e2e1",
+                    "on-secondary": "#003824",
+                    "surface-container-low": "#1c1b1b",
+                    "on-primary-fixed": "#07006c",
+                    "tertiary-fixed-dim": "#ffb2b7",
+                    "inverse-surface": "#e5e2e1",
+                    "surface": "#131313",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "primary-container": "#8083ff",
+                    "surface-dim": "#131313",
+                    "surface-container-high": "#2a2a2a",
+                    "inverse-on-surface": "#313030",
+                    "on-tertiary-container": "#5b0017",
+                    "tertiary-container": "#ff516a",
+                    "surface-bright": "#3a3939",
+                    "on-tertiary-fixed": "#40000d",
+                    "on-secondary-fixed-variant": "#005236",
+                    "primary-fixed": "#e1e0ff",
+                    "on-primary-fixed-variant": "#2f2ebe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding-mobile": "20px",
+                    "stack-lg": "32px",
+                    "stack-sm": "8px",
+                    "container-padding-desktop": "40px",
+                    "stack-md": "16px",
+                    "unit": "4px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-md": ["JetBrains Mono"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Geist"],
+                    "display-lg": ["Geist"],
+                    "headline-lg": ["Geist"],
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Geist"],
+                    "label-sm": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0a0a0a;
+            color: #e5e2e1;
+        }
+        .glass-card {
+            background: rgba(23, 23, 23, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid #262626;
+        }
+        .inner-glow-btn {
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .input-glow:focus, .input-glow:hover {
+            box-shadow: 0 0 15px 0 rgba(192, 193, 255, 0.15);
+            border-color: rgba(192, 193, 255, 0.5);
+        }
+        .input-glow:focus {
+            box-shadow: 0 0 20px 0 rgba(192, 193, 255, 0.3);
+            border-color: #c0c1ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .progress-line {
+            background: linear-gradient(90deg, transparent 0%, #c0c1ff 50%, transparent 100%);
+            background-size: 200% 100%;
+            animation: sweep 2s infinite linear;
+        }
+        @keyframes sweep {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .shimmer-bg {
+            background: linear-gradient(90deg, #c0c1ff 25%, #e1e0ff 50%, #c0c1ff 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite linear;
+        }
+
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: reveal 0.6s ease-out forwards;
+        }
+        @keyframes reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r border-outline-variant backdrop-blur-md bg-surface-container/70 shadow-sm flex flex-col py-stack-lg z-50">
+<div class="px-gutter mb-stack-lg">
+<h1 class="text-headline-md font-headline-md text-primary tracking-tight">LoanPredict AI</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Precision KNN Engine</p>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<a class="flex items-center px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 transition-colors duration-200 active:scale-95 transition-transform font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center px-4 py-3 rounded-lg bg-primary-container text-on-primary-container font-bold border-r-4 border-primary transition-transform font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined mr-3">online_prediction</span>
+                New Prediction
+            </a>
+<a class="flex items-center px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 transition-colors duration-200 active:scale-95 transition-transform font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined mr-3">history</span>
+                History
+            </a>
+<a class="flex items-center px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 transition-colors duration-200 active:scale-95 transition-transform font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined mr-3">analytics</span>
+                Analytics
+            </a>
+</nav>
+<div class="px-gutter mt-auto flex items-center space-x-3 pt-stack-md border-t border-outline-variant/30">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADRldrI_gBCko6wG-FIpLrMlI5raTCLq8BDc7DEe728R2zrf3ke-xdgJkQQgzBEorPPIjymLUb-g_V3kWO8F_C9XxDK3Hs17TckPf4BNiLMrPONKNHjpubd3Wds-1WC9mUR6wWnRLn2gMuCSvq14yAT-KN8_Ofnv2Jd87OaOJg_36U6rAkzeYS1lueFWI4mcvKbY6UYSyrCZp-6RRfSfMUj72_xZY7qpLTsbcq8V5K0MsBQhv-53TNjHQcDI7O2zuuFt_bhm227Hc"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Analyst 042</p>
+<p class="text-[10px] font-label-sm text-outline uppercase tracking-widest">Senior Underwriter</p>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-surface/70 backdrop-blur-lg border-b border-outline-variant shadow-sm flex justify-between items-center h-16 px-gutter ml-64">
+<div class="flex items-center flex-1">
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-body-md">search</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-full py-1.5 pl-10 pr-4 text-label-md font-label-md focus:outline-none focus:border-primary transition-all" placeholder="Search applications..." type="text"/>
+</div>
+</div>
+<div class="flex items-center space-x-6">
+<div class="flex items-center space-x-4">
+<button class="text-on-surface-variant hover:text-primary transition-all duration-300 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-tertiary rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-all duration-300">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-6 py-2 rounded-full font-bold hover:shadow-[0_0_15px_rgba(192,193,255,0.4)] transition-all active:scale-95 inner-glow-btn">
+                Run Prediction
+            </button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-gutter min-h-[calc(100vh-4rem)] flex flex-col">
+<!-- Header Section -->
+<section class="mb-stack-lg reveal-section">
+<div class="flex items-end justify-between">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Loan Eligibility Prediction</h2>
+<p class="text-on-surface-variant font-body-md max-w-2xl">Enter the applicant details below to run our high-precision KNN algorithm. The engine analyzes over 12 parameters to provide an instant risk assessment.</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-outline mb-1 uppercase tracking-tighter">Model Version</span>
+<span class="font-label-md text-label-md text-secondary border border-secondary/30 px-3 py-1 rounded bg-secondary/5">v4.2.8-stable</span>
+</div>
+</div>
+</section>
+<!-- Multi-Step Form Logic Simulated with Grouped Layout -->
+<form class="grid grid-cols-12 gap-gutter">
+<!-- Step 1: Personal Attributes (Bento Style) -->
+<div class="col-span-12 lg:col-span-4 space-y-gutter">
+<div class="glass-card p-6 rounded-xl relative overflow-hidden group reveal-section delay-1">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary/30 group-hover:bg-primary transition-colors"></div>
+<h3 class="font-label-md text-label-md text-primary mb-stack-md flex items-center">
+<span class="material-symbols-outlined mr-2 text-sm">person</span>
+                        Demographics
+                    </h3>
+<div class="space-y-stack-md">
+<div class="flex flex-col space-y-1">
+<label class="font-label-sm text-label-sm text-outline">Gender</label>
+<select class="bg-surface-container-lowest border border-outline-variant rounded-lg p-2.5 text-on-surface focus:outline-none input-glow transition-all">
+<option>Male</option>
+<option>Female</option>
+<option>Non-binary</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col space-y-1">
+<label class="font-label-sm text-label-sm text-outline">Married</label>
+<select class="bg-surface-container-lowest border border-outline-variant rounded-lg p-2.5 text-on-surface focus:outline-none input-glow transition-all">
+<option>Yes</option>
+<option>No</option>
+</select>
+</div>
+<div class="flex flex-col space-y-1">
+<label class="font-label-sm text-label-sm text-outline">Dependents</label>
+<select class="bg-surface-container-lowest border border-outline-variant rounded-lg p-2.5 text-on-surface focus:outline-none input-glow transition-all">
+<option>0</option>
+<option>1</option>
+<option>2</option>
+<option>3+</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<div class="glass-card p-6 rounded-xl relative overflow-hidden group reveal-section delay-2">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary/30 group-hover:bg-secondary transition-colors"></div>
+<h3 class="font-label-md text-label-md text-secondary mb-stack-md flex items-center">
+<span class="material-symbols-outlined mr-2 text-sm">school</span>
+                        Professional Status
+                    </h3>
+<div class="space-y-stack-md">
+<div class="flex flex-col space-y-1">
+<label class="font-label-sm text-label-sm text-outline">Education</label>
+<select class="bg-surface-container-lowest border border-outline-variant rounded-lg p-2.5 text-on-surface focus:outline-none input-glow transition-all">
+<option>Graduate</option>
+<option>Not Graduate</option>
+</select>
+</div>
+<div class="flex flex-col space-y-1">
+<label class="font-label-sm text-label-sm text-outline">Self-Employed</label>
+<div class="flex space-x-4 pt-1">
+<label class="flex items-center space-x-2 cursor-pointer">
+<input class="form-radio text-secondary bg-transparent border-outline-variant focus:ring-secondary" name="self_emp" type="radio"/>
+<span class="text-label-md font-label-md">Yes</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input checked="" class="form-radio text-secondary bg-transparent border-outline-variant focus:ring-secondary" name="self_emp" type="radio"/>
+<span class="text-label-md font-label-md">No</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 2: Financials (Central Focus) -->
+<div class="col-span-12 lg:col-span-8 space-y-gutter">
+<div class="glass-card p-8 rounded-xl relative overflow-hidden h-full reveal-section delay-3">
+<div class="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[120px] animate-float">account_balance_wallet</span>
+</div>
+<h3 class="font-label-md text-label-md text-primary mb-stack-lg flex items-center">
+<span class="material-symbols-outlined mr-2 text-sm">payments</span>
+                        Financial Configuration
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Income Metrics -->
+<div class="space-y-6">
+<div class="flex flex-col space-y-1.5 group">
+<label class="font-label-sm text-label-sm text-outline group-focus-within:text-primary transition-colors">Applicant Income ($)</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-3 pl-8 text-on-surface focus:outline-none input-glow transition-all font-label-md" placeholder="e.g. 5400" type="number"/>
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant text-sm">$</span>
+</div>
+</div>
+<div class="flex flex-col space-y-1.5 group">
+<label class="font-label-sm text-label-sm text-outline group-focus-within:text-primary transition-colors">Co-applicant Income ($)</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-3 pl-8 text-on-surface focus:outline-none input-glow transition-all font-label-md" placeholder="e.g. 2000" type="number"/>
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant text-sm">$</span>
+</div>
+</div>
+<div class="flex flex-col space-y-1.5 group">
+<label class="font-label-sm text-label-sm text-outline group-focus-within:text-primary transition-colors">Credit History</label>
+<div class="grid grid-cols-2 gap-2 p-1 bg-surface-container rounded-lg border border-outline-variant/30">
+<button class="py-2 rounded-md font-label-md text-label-md transition-all bg-primary-container text-on-primary-container font-bold" type="button">1 (Good)</button>
+<button class="py-2 rounded-md font-label-md text-label-md transition-all text-on-surface-variant hover:bg-surface-variant/50" type="button">0 (Poor)</button>
+</div>
+</div>
+</div>
+<!-- Loan Parameters -->
+<div class="space-y-6">
+<div class="flex flex-col space-y-1.5 group">
+<label class="font-label-sm text-label-sm text-outline group-focus-within:text-primary transition-colors">Loan Amount (in Thousands)</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-3 pl-8 text-on-surface focus:outline-none input-glow transition-all font-label-md" placeholder="e.g. 128" type="number"/>
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant text-sm">k</span>
+</div>
+</div>
+<div class="flex flex-col space-y-1.5 group">
+<label class="font-label-sm text-label-sm text-outline group-focus-within:text-primary transition-colors">Loan Amount Term (Days)</label>
+<select class="bg-surface-container-lowest border border-outline-variant rounded-lg p-3 text-on-surface focus:outline-none input-glow transition-all font-label-md">
+<option value="360">360 Days (Standard)</option>
+<option value="180">180 Days</option>
+<option value="480">480 Days</option>
+</select>
+</div>
+<div class="flex flex-col space-y-1.5 group">
+<label class="font-label-sm text-label-sm text-outline group-focus-within:text-primary transition-colors">Property Area</label>
+<div class="flex flex-wrap gap-3">
+<label class="flex-1 min-w-[80px]">
+<input class="hidden peer" name="prop_area" type="radio" value="Urban"/>
+<div class="w-full text-center py-2.5 rounded-lg border border-outline-variant text-label-sm font-label-sm peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary transition-all cursor-pointer hover:border-primary/50">Urban</div>
+</label>
+<label class="flex-1 min-w-[80px]">
+<input checked="" class="hidden peer" name="prop_area" type="radio" value="Semiurban"/>
+<div class="w-full text-center py-2.5 rounded-lg border border-outline-variant text-label-sm font-label-sm peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary transition-all cursor-pointer hover:border-primary/50">Semiurban</div>
+</label>
+<label class="flex-1 min-w-[80px]">
+<input class="hidden peer" name="prop_area" type="radio" value="Rural"/>
+<div class="w-full text-center py-2.5 rounded-lg border border-outline-variant text-label-sm font-label-sm peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary transition-all cursor-pointer hover:border-primary/50">Rural</div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Prediction Action Bar -->
+<div class="mt-stack-lg pt-stack-lg border-t border-outline-variant/30 flex flex-col items-center">
+<div class="hidden w-full mb-6 text-center" id="prediction-status">
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden mb-2">
+<div class="progress-line h-full w-full"></div>
+</div>
+<p class="font-label-sm text-label-sm text-primary animate-pulse">Calculating Decision Boundaries...</p>
+</div>
+<div class="flex space-x-4 w-full">
+<button class="flex-1 py-4 border border-outline-variant rounded-xl font-label-md text-label-md hover:border-white transition-colors active:scale-95" type="reset">Reset Fields</button>
+<button class="flex-[2] py-4 bg-primary text-on-primary rounded-xl font-bold font-headline-md text-headline-md hover:shadow-[0_0_20px_rgba(192,193,255,0.4)] transition-all active:scale-95 inner-glow-btn relative overflow-hidden" id="predict-btn" type="button">
+<span id="predict-btn-text">Execute Prediction</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</form>
+<!-- Dynamic Result Card (Initially Hidden) -->
+<div class="hidden mt-stack-lg glass-card p-8 rounded-xl border-secondary/30 relative overflow-hidden" id="result-container">
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary shadow-[0_0_15px_rgba(78,222,163,0.5)]"></div>
+<div class="flex items-center justify-between">
+<div>
+<h4 class="font-label-sm text-label-sm text-outline mb-1 uppercase tracking-widest">Prediction Engine Output</h4>
+<div class="flex items-center">
+<span class="text-secondary font-headline-lg text-headline-lg mr-4">LOAN_APPROVED</span>
+<div class="px-3 py-1 rounded bg-secondary/10 border border-secondary/30 text-secondary font-label-md text-label-md">94.2% Confidence</div>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-outline">Decision Vector ID</p>
+<p class="font-label-md text-label-md text-on-surface">#LP-9823-XJ</p>
+</div>
+</div>
+<div class="mt-6 grid grid-cols-4 gap-4">
+<div class="p-4 bg-surface-container-low rounded-lg border border-outline-variant/30">
+<p class="text-[10px] text-outline font-label-sm uppercase mb-1">Debt-Income Ratio</p>
+<p class="text-headline-md font-headline-md">0.32</p>
+</div>
+<div class="p-4 bg-surface-container-low rounded-lg border border-outline-variant/30">
+<p class="text-[10px] text-outline font-label-sm uppercase mb-1">Credit Weighted</p>
+<p class="text-headline-md font-headline-md">0.89</p>
+</div>
+<div class="p-4 bg-surface-container-low rounded-lg border border-outline-variant/30">
+<p class="text-[10px] text-outline font-label-sm uppercase mb-1">Market Factor</p>
+<p class="text-headline-md font-headline-md">Neutral</p>
+</div>
+<div class="p-4 bg-surface-container-low rounded-lg border border-outline-variant/30">
+<p class="text-[10px] text-outline font-label-sm uppercase mb-1">Risk Profile</p>
+<p class="text-headline-md font-headline-md text-secondary">Low</p>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full py-stack-md mt-auto border-t border-outline-variant bg-surface-container-lowest flex flex-col md:flex-row justify-between items-center px-gutter ml-[-24px] w-[calc(100%+48px)]">
+<span class="font-label-sm text-label-sm text-outline">© 2024 LoanPredict AI. All rights reserved.</span>
+<div class="flex space-x-6 mt-4 md:mt-0">
+<a class="font-label-sm text-label-sm text-outline hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-outline hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-outline hover:text-on-surface transition-colors" href="#">Legal Disclosures</a>
+<a class="font-label-sm text-label-sm text-outline hover:text-on-surface transition-colors text-primary" href="#">Contact Support</a>
+</div>
+</footer>
+</main>
+<script>
+        document.getElementById('predict-btn').addEventListener('click', function() {
+            const status = document.getElementById('prediction-status');
+            const result = document.getElementById('result-container');
+            const btn = this;
+            const btnText = document.getElementById('predict-btn-text');
+
+            btn.disabled = true;
+            btn.classList.add('cursor-not-allowed', 'shimmer-bg');
+            btnText.textContent = 'Processing...';
+            status.classList.remove('hidden');
+            result.classList.add('hidden');
+
+            // Simulate computation delay
+            setTimeout(() => {
+                status.classList.add('hidden');
+                result.classList.remove('hidden');
+                btn.disabled = false;
+                btn.classList.remove('shimmer-bg', 'cursor-not-allowed');
+                btnText.textContent = 'Execute Prediction';
+                
+                // Smooth scroll to result
+                result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 2500);
+        });
+
+        // Toggle logic for Credit History
+        const creditButtons = document.querySelectorAll('div.grid-cols-2 button');
+        creditButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                creditButtons.forEach(b => {
+                    b.classList.remove('bg-primary-container', 'text-on-primary-container', 'font-bold');
+                    b.classList.add('text-on-surface-variant', 'hover:bg-surface-variant/50');
+                });
+                this.classList.remove('text-on-surface-variant', 'hover:bg-surface-variant/50');
+                this.classList.add('bg-primary-container', 'text-on-primary-container', 'font-bold');
+            });
+        });
+    </script>
+</body></html>

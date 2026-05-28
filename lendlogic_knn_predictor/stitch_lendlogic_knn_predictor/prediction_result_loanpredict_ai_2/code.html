@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LoanPredict AI | Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Geist:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#ffdadb",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-primary-container": "#0d0096",
+                        "error-container": "#93000a",
+                        "tertiary": "#ffb2b7",
+                        "background": "#131313",
+                        "on-tertiary": "#67001b",
+                        "secondary": "#4edea3",
+                        "on-secondary-container": "#00311f",
+                        "on-secondary-fixed": "#002113",
+                        "on-primary": "#1000a9",
+                        "secondary-fixed-dim": "#4edea3",
+                        "surface-container": "#201f1f",
+                        "secondary-container": "#00a572",
+                        "outline-variant": "#464554",
+                        "surface-container-lowest": "#0e0e0e",
+                        "primary": "#c0c1ff",
+                        "inverse-primary": "#494bd6",
+                        "on-surface-variant": "#c7c4d7",
+                        "surface-tint": "#c0c1ff",
+                        "on-error": "#690005",
+                        "outline": "#908fa0",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-highest": "#353534",
+                        "error": "#ffb4ab",
+                        "surface-variant": "#353534",
+                        "on-tertiary-fixed-variant": "#92002a",
+                        "on-surface": "#e5e2e1",
+                        "on-background": "#e5e2e1",
+                        "on-secondary": "#003824",
+                        "surface-container-low": "#1c1b1b",
+                        "on-primary-fixed": "#07006c",
+                        "tertiary-fixed-dim": "#ffb2b7",
+                        "inverse-surface": "#e5e2e1",
+                        "surface": "#131313",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "primary-container": "#8083ff",
+                        "surface-dim": "#131313",
+                        "surface-container-high": "#2a2a2a",
+                        "inverse-on-surface": "#313030",
+                        "on-tertiary-container": "#5b0017",
+                        "tertiary-container": "#ff516a",
+                        "surface-bright": "#3a3939",
+                        "on-tertiary-fixed": "#40000d",
+                        "on-secondary-fixed-variant": "#005236",
+                        "primary-fixed": "#e1e0ff",
+                        "on-primary-fixed-variant": "#2f2ebe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding-mobile": "20px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px",
+                        "container-padding-desktop": "40px",
+                        "stack-md": "16px",
+                        "unit": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Geist"],
+                        "label-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(23, 23, 23, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid #262626;
+        }
+        .prediction-glow-approved {
+            box-shadow: 0 0 40px -10px rgba(78, 222, 163, 0.3);
+        }
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        .scanner-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #c0c1ff, transparent);
+            animation: scan 3s linear infinite;
+        }
+        
+        /* New Animations */
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-slide-up {
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        @keyframes pulseGlow {
+            0% { filter: drop-shadow(0 0 2px rgba(78, 222, 163, 0.5)); }
+            50% { filter: drop-shadow(0 0 12px rgba(78, 222, 163, 0.9)); }
+            100% { filter: drop-shadow(0 0 2px rgba(78, 222, 163, 0.5)); }
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 2s infinite;
+        }
+
+        canvas#particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        .tooltip-card {
+            pointer-events: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.2s ease-out;
+        }
+        .neighbor-point:hover .tooltip-card {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- Particle Background -->
+<canvas id="particles"></canvas>
+<!-- Side Navigation Shell -->
+<nav class="h-screen w-64 fixed left-0 top-0 border-r border-outline-variant backdrop-blur-md bg-surface-container/70 dark:bg-surface-container/70 shadow-sm flex flex-col py-stack-lg z-50">
+<div class="px-gutter mb-stack-lg">
+<h1 class="text-headline-md font-headline-md text-primary tracking-tight">LoanPredict AI</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Precision KNN Engine</p>
+</div>
+<div class="flex-1 space-y-unit">
+<a class="flex items-center px-gutter py-stack-sm text-on-surface-variant hover:bg-surface-variant/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-stack-sm">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center px-gutter py-stack-sm bg-primary-container text-on-primary-container font-bold border-r-4 border-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-stack-sm">online_prediction</span>
+<span class="font-label-md text-label-md">New Prediction</span>
+</a>
+<a class="flex items-center px-gutter py-stack-sm text-on-surface-variant hover:bg-surface-variant/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-stack-sm">history</span>
+<span class="font-label-md text-label-md">History</span>
+</a>
+<a class="flex items-center px-gutter py-stack-sm text-on-surface-variant hover:bg-surface-variant/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-stack-sm">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+</div>
+<div class="px-gutter pt-stack-md mt-auto border-t border-outline-variant/30 flex items-center gap-stack-sm">
+<img alt="User avatar" class="w-10 h-10 rounded-full border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBniN9gMM9yWWu77em9zhHa-dC6Sp9BmdEOr4WUAuDevtBQhVI5P7YUr80y44iTaSzoMFEkZS0Bg9a2CVS2aM8RtI680w5CzmIarvGAMBfEetQbRv0BqhqT9HNC_VSMBerv2hzSiiKcyMRfQGnuJfSCTYbpoQyrC8oTXSKTPGLcEj5_r1vCKAsNLVO1w5SwzIKlzp7TRyfnfdwzibmmtOucRM6daOkPUHZi7LgVzEUW-2LAr2Lz0werba3PNDIrSeeIJVZxX-shNxw"/>
+<div>
+<p class="font-label-md text-label-md">Alex Chen</p>
+<p class="font-label-sm text-label-sm text-outline">Senior Underwriter</p>
+</div>
+</div>
+</nav>
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-surface/70 border-b border-outline-variant backdrop-blur-lg shadow-sm flex justify-between items-center h-16 px-gutter ml-64">
+<div class="flex items-center gap-stack-md w-1/2">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md font-label-md w-full text-on-surface" placeholder="Search loan IDs..." type="text"/>
+</div>
+<div class="flex items-center gap-gutter">
+<button class="hover:text-primary transition-all duration-300">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hover:text-primary transition-all duration-300">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-stack-md py-stack-sm rounded hover:shadow-[0_0_10px_rgba(192,193,255,0.4)] transition-all">
+                Run Prediction
+            </button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-16 min-h-screen flex flex-col relative z-10">
+<div class="px-gutter py-stack-lg max-w-[1440px] mx-auto w-full">
+<!-- Hero Result Section -->
+<section class="glass-panel rounded-xl p-10 mb-stack-lg relative overflow-hidden prediction-glow-approved animate-slide-up" style="animation-delay: 0.1s; opacity: 0;">
+<div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
+<div class="scanner-line absolute w-full"></div>
+</div>
+<div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-stack-lg">
+<div class="space-y-stack-sm">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Analysis Complete</span>
+<h2 class="font-display-lg text-display-lg text-secondary-fixed flex items-center gap-stack-sm">
+                            Approved
+                            <span class="material-symbols-outlined text-5xl animate-pulse-glow" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+                            The application for <span class="text-on-surface font-bold">#LN-88421</span> meets all risk parameters for the Premium Loan Tier.
+                        </p>
+<div class="pt-stack-md flex gap-stack-md">
+<button class="bg-primary text-on-primary px-6 py-3 rounded-lg font-label-md text-label-md flex items-center gap-2 hover:shadow-[0_0_15px_rgba(192,193,255,0.5)] transition-all">
+<span class="material-symbols-outlined">download</span>
+                                Download Report
+                            </button>
+<button class="glass-panel px-6 py-3 rounded-lg font-label-md text-label-md text-on-surface hover:border-primary transition-colors">
+                                View Full Details
+                            </button>
+</div>
+</div>
+<!-- Confidence Dial -->
+<div class="relative flex flex-col items-center">
+<div class="w-64 h-64 relative">
+<svg class="w-full h-full transform -rotate-90">
+<circle cx="128" cy="128" fill="transparent" r="100" stroke="#262626" stroke-width="12"></circle>
+<circle class="transition-all duration-1000 ease-out" cx="128" cy="128" fill="transparent" id="confidence-circle" r="100" stroke="#4edea3" stroke-dasharray="628.3" stroke-dashoffset="628.3" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-display-lg text-display-lg text-on-surface">94%</span>
+<span class="font-label-sm text-label-sm text-outline">CONFIDENCE</span>
+</div>
+</div>
+<div class="mt-stack-sm text-center">
+<span class="font-label-sm text-label-sm text-secondary px-3 py-1 bg-secondary/10 border border-secondary/20 rounded-full">High Precision Match</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Insights -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-stack-md">
+<!-- KNN Nearest Neighbors Visualization -->
+<div class="md:col-span-8 glass-panel rounded-xl p-stack-md flex flex-col animate-slide-up" style="animation-delay: 0.2s; opacity: 0;">
+<div class="flex justify-between items-center mb-stack-md">
+<h3 class="font-headline-md text-headline-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">hub</span>
+                            Nearest Neighbors
+                        </h3>
+<span class="font-label-sm text-label-sm text-outline">K=5 Search Space</span>
+</div>
+<!-- Map-like Visualization -->
+<div class="flex-1 min-h-[300px] relative bg-surface-container-lowest/50 rounded-lg border border-outline-variant/30 overflow-hidden p-6">
+<!-- Central Point (Current Case) -->
+<div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 neighbor-point">
+<div class="w-6 h-6 bg-primary rounded-full animate-ping absolute"></div>
+<div class="w-6 h-6 bg-primary rounded-full relative shadow-[0_0_20px_#c0c1ff]"></div>
+<div class="tooltip-card absolute bottom-full left-1/2 -translate-x-1/2 mb-4 glass-panel p-3 rounded-lg text-xs whitespace-nowrap z-50 shadow-xl border border-primary/30">
+<p class="text-primary font-bold mb-1">Current Query</p>
+<p>Income: <span class="text-on-surface">$124k</span></p>
+<p>Credit: <span class="text-on-surface">782</span></p>
+</div>
+</div>
+<!-- Neighbor Points with Tooltips -->
+<div class="absolute left-[30%] top-[25%] neighbor-point group cursor-pointer">
+<div class="w-4 h-4 bg-secondary rounded-full transition-transform hover:scale-150"></div>
+<div class="tooltip-card absolute bottom-full left-1/2 -translate-x-1/2 mb-2 glass-panel p-2 rounded text-xs whitespace-nowrap z-50 border border-secondary/30">
+<p class="text-secondary font-bold">Approved #8810</p>
+<p>Income: $132k | Credit: 795</p>
+</div>
+</div>
+<div class="absolute left-[70%] top-[40%] neighbor-point group cursor-pointer">
+<div class="w-4 h-4 bg-secondary rounded-full transition-transform hover:scale-150"></div>
+<div class="tooltip-card absolute bottom-full left-1/2 -translate-x-1/2 mb-2 glass-panel p-2 rounded text-xs whitespace-nowrap z-50 border border-secondary/30">
+<p class="text-secondary font-bold">Approved #8792</p>
+<p>Income: $118k | Credit: 760</p>
+</div>
+</div>
+<div class="absolute left-[45%] top-[75%] neighbor-point group cursor-pointer">
+<div class="w-4 h-4 bg-error rounded-full transition-transform hover:scale-150"></div>
+<div class="tooltip-card absolute bottom-full left-1/2 -translate-x-1/2 mb-2 glass-panel p-2 rounded text-xs whitespace-nowrap z-50 border border-error/30">
+<p class="text-error font-bold">Denied #8840</p>
+<p>Income: $95k | Credit: 640</p>
+</div>
+</div>
+<div class="absolute left-[65%] top-[15%] neighbor-point group cursor-pointer">
+<div class="w-4 h-4 bg-secondary rounded-full transition-transform hover:scale-150"></div>
+<div class="tooltip-card absolute bottom-full left-1/2 -translate-x-1/2 mb-2 glass-panel p-2 rounded text-xs whitespace-nowrap z-50 border border-secondary/30">
+<p class="text-secondary font-bold">Approved #8822</p>
+<p>Income: $140k | Credit: 810</p>
+</div>
+</div>
+<div class="absolute left-[20%] top-[60%] neighbor-point group cursor-pointer">
+<div class="w-4 h-4 bg-secondary rounded-full transition-transform hover:scale-150"></div>
+<div class="tooltip-card absolute bottom-full left-1/2 -translate-x-1/2 mb-2 glass-panel p-2 rounded text-xs whitespace-nowrap z-50 border border-secondary/30">
+<p class="text-secondary font-bold">Approved #8815</p>
+<p>Income: $110k | Credit: 745</p>
+</div>
+</div>
+<!-- SVG Grid Lines -->
+<svg class="absolute inset-0 w-full h-full opacity-10 pointer-events-none">
+<defs>
+<pattern height="40" id="grid" patternunits="userSpaceOnUse" width="40">
+<path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5"></path>
+</pattern>
+</defs>
+<rect fill="url(#grid)" height="100%" width="100%"></rect>
+</svg>
+</div>
+<div class="mt-stack-md flex gap-stack-lg border-t border-outline-variant/30 pt-stack-md">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-secondary rounded-full"></div>
+<span class="font-label-sm text-label-sm">Approved (4)</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-error rounded-full"></div>
+<span class="font-label-sm text-label-sm">Denied (1)</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-primary rounded-full"></div>
+<span class="font-label-sm text-label-sm">Current Query</span>
+</div>
+</div>
+</div>
+<!-- Decision Factors Card -->
+<div class="md:col-span-4 space-y-stack-md animate-slide-up" style="animation-delay: 0.3s; opacity: 0;">
+<div class="glass-panel rounded-xl p-stack-md">
+<h4 class="font-label-sm text-label-sm text-outline uppercase mb-stack-md">Key Decision Drivers</h4>
+<div class="space-y-stack-md">
+<div>
+<div class="flex justify-between font-label-md text-label-md mb-1">
+<span>Credit Score Ratio</span>
+<span class="text-secondary">+12.4%</span>
+</div>
+<div class="h-1 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-4/5 transition-all duration-1000 delay-500"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-md text-label-md mb-1">
+<span>Income Stability</span>
+<span class="text-secondary">+8.2%</span>
+</div>
+<div class="h-1 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-3/4 transition-all duration-1000 delay-700"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-md text-label-md mb-1">
+<span>DTI Profile</span>
+<span class="text-primary">-1.5%</span>
+</div>
+<div class="h-1 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-1/2 transition-all duration-1000 delay-900"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-stack-md bg-primary-container/10 border-primary/20">
+<div class="flex items-start gap-stack-sm">
+<span class="material-symbols-outlined text-primary">info</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Auto-Approval Eligible</h4>
+<p class="text-xs text-on-surface-variant mt-1 leading-relaxed">
+                                    This applicant ranks in the 98th percentile for reliability among similar historic portfolios. No manual review is suggested.
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full py-stack-md mt-auto border-t border-outline-variant bg-surface-container-lowest flex flex-col md:flex-row justify-between items-center px-gutter ml-64 w-[calc(100%-16rem)] relative z-10">
+<p class="font-label-sm text-label-sm text-outline">© 2024 LoanPredict AI. All rights reserved.</p>
+<div class="flex gap-stack-md">
+<a class="font-label-sm text-label-sm text-outline hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-outline hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-outline hover:text-on-surface transition-colors" href="#">Legal Disclosures</a>
+<a class="font-label-sm text-label-sm text-outline hover:text-on-surface transition-colors" href="#">Contact Support</a>
+</div>
+</footer>
+<script>
+        // Particle Background Effect
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function initParticles() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles = [];
+            for (let i = 0; i < 60; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 2 + 1,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    alpha: Math.random() * 0.5 + 0.1
+                });
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(192, 193, 255, ${p.alpha})`;
+                ctx.fill();
+            });
+            
+            // Draw faint lines for 'neural' vibe
+            ctx.strokeStyle = 'rgba(192, 193, 255, 0.05)';
+            ctx.lineWidth = 0.5;
+            for(let i=0; i<particles.length; i++) {
+                for(let j=i+1; j<particles.length; j++) {
+                    const dist = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
+                    if(dist < 200) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', initParticles);
+        initParticles();
+        animateParticles();
+
+        // Confidence Dial Animation on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            const circle = document.getElementById('confidence-circle');
+            const confidenceValue = 94;
+            const circumference = 2 * Math.PI * 100;
+            const offset = circumference - (confidenceValue / 100) * circumference;
+            
+            // Intersection Observer to trigger when visible
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            circle.style.strokeDashoffset = offset;
+                        }, 500);
+                    }
+                });
+            });
+            observer.observe(circle);
+        });
+    </script>
+</body></html>

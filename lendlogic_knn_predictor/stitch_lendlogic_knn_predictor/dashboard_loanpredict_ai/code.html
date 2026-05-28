@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #0a0a0a;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(23, 23, 23, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid #262626;
+        }
+        .inner-glow-btn {
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+        }
+        .prediction-line {
+            background: linear-gradient(90deg, transparent, #c0c1ff, transparent);
+            background-size: 200% 100%;
+            animation: sweep 3s infinite linear;
+        }
+        @keyframes sweep {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#ffdadb",
+                      "secondary-fixed": "#6ffbbe",
+                      "on-primary-container": "#0d0096",
+                      "error-container": "#93000a",
+                      "tertiary": "#ffb2b7",
+                      "background": "#131313",
+                      "on-tertiary": "#67001b",
+                      "secondary": "#4edea3",
+                      "on-secondary-container": "#00311f",
+                      "on-secondary-fixed": "#002113",
+                      "on-primary": "#1000a9",
+                      "secondary-fixed-dim": "#4edea3",
+                      "surface-container": "#201f1f",
+                      "secondary-container": "#00a572",
+                      "outline-variant": "#464554",
+                      "surface-container-lowest": "#0e0e0e",
+                      "primary": "#c0c1ff",
+                      "inverse-primary": "#494bd6",
+                      "on-surface-variant": "#c7c4d7",
+                      "surface-tint": "#c0c1ff",
+                      "on-error": "#690005",
+                      "outline": "#908fa0",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-highest": "#353534",
+                      "error": "#ffb4ab",
+                      "surface-variant": "#353534",
+                      "on-tertiary-fixed-variant": "#92002a",
+                      "on-surface": "#e5e2e1",
+                      "on-background": "#e5e2e1",
+                      "on-secondary": "#003824",
+                      "surface-container-low": "#1c1b1b",
+                      "on-primary-fixed": "#07006c",
+                      "tertiary-fixed-dim": "#ffb2b7",
+                      "inverse-surface": "#e5e2e1",
+                      "surface": "#131313",
+                      "primary-fixed-dim": "#c0c1ff",
+                      "primary-container": "#8083ff",
+                      "surface-dim": "#131313",
+                      "surface-container-high": "#2a2a2a",
+                      "inverse-on-surface": "#313030",
+                      "on-tertiary-container": "#5b0017",
+                      "tertiary-container": "#ff516a",
+                      "surface-bright": "#3a3939",
+                      "on-tertiary-fixed": "#40000d",
+                      "on-secondary-fixed-variant": "#005236",
+                      "primary-fixed": "#e1e0ff",
+                      "on-primary-fixed-variant": "#2f2ebe"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-padding-mobile": "20px",
+                      "stack-lg": "32px",
+                      "stack-sm": "8px",
+                      "container-padding-desktop": "40px",
+                      "stack-md": "16px",
+                      "unit": "4px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "label-md": ["JetBrains Mono"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Geist"],
+                      "display-lg": ["Geist"],
+                      "headline-lg": ["Geist"],
+                      "body-md": ["Inter"],
+                      "headline-lg-mobile": ["Geist"],
+                      "label-sm": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container/70 dark:bg-surface-container/70 border-r border-outline-variant backdrop-blur-md shadow-sm flex flex-col py-stack-lg z-50">
+<div class="px-gutter mb-10">
+<h1 class="text-headline-md font-headline-md text-primary tracking-tight">LoanPredict AI</h1>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-70">Precision KNN Engine</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-gutter py-3 bg-primary-container text-on-primary-container font-bold border-r-4 border-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-gutter py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-colors duration-200 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">online_prediction</span>
+<span class="font-label-md text-label-md">New Prediction</span>
+</a>
+<a class="flex items-center gap-3 px-gutter py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-colors duration-200 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md text-label-md">History</span>
+</a>
+<a class="flex items-center gap-3 px-gutter py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-colors duration-200 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+</nav>
+<div class="px-gutter mt-auto pt-10 border-t border-outline-variant/30">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden border border-primary/20">
+<img alt="User avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWKrEjOUY1_lf8140aG2B5UDI5aVIIhRc1QjNFr0msehBKiJRPX1vSy-L6uAinEw1mG2B2KbX6CdLGt3XwqhvkQSVwzkMMD667X0rTfQ4ZiXJpRCseJCAH_Dj0X-67EJUBre0aAm77j8v9Ar_QhnxzgHEMbBr_EFHdDk3jn_NsqSmeq237oVz4YRl3uHmd1-NH3MrVKxo4vRo4FVp5wEeN31qU9bd0yb7JBq9-bzyzcsXDCrSGEWpVsiP5AQ3b6nZVeT07pCLZxIU"/>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold">Admin Analyst</p>
+<p class="text-xs text-outline">Risk Management</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-surface/70 dark:bg-surface/70 border-b border-outline-variant backdrop-blur-lg shadow-sm flex justify-between items-center px-gutter ml-64 z-40">
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant px-4 py-1.5 rounded-full w-96">
+<span class="material-symbols-outlined text-outline text-sm mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md font-label-md w-full placeholder:text-outline/50" placeholder="Search predictions or entities..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-on-surface-variant">
+<button class="material-symbols-outlined hover:text-primary transition-all duration-300">notifications</button>
+<button class="material-symbols-outlined hover:text-primary transition-all duration-300">settings</button>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-6 py-2 rounded-full font-bold inner-glow-btn hover:shadow-[0_0_15px_rgba(192,193,255,0.4)] transition-all active:scale-95">
+                Run Prediction
+            </button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 pb-stack-lg px-gutter min-h-screen">
+<div class="max-w-7xl mx-auto space-y-stack-lg">
+<!-- Welcome Hero & Quick Action -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-gutter items-stretch">
+<div class="lg:col-span-2 glass-panel p-8 rounded-xl relative overflow-hidden flex flex-col justify-center">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-20 -mt-20 blur-3xl"></div>
+<h2 class="font-display-lg text-display-lg mb-4">Good morning, <span class="text-primary">Analyst</span></h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-8">
+                        The neural engine has processed 124 new loan applications since your last login. Current confidence threshold is set to 94.2%.
+                    </p>
+<div class="flex gap-4">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest">Engine Status</span>
+<div class="flex items-center gap-2 text-secondary">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-md text-label-md">Operational</span>
+</div>
+</div>
+</div>
+</div>
+<!-- CTA Card: Start New Prediction -->
+<div class="glass-panel p-8 rounded-xl border-primary/20 bg-gradient-to-br from-primary/10 to-transparent flex flex-col justify-between group cursor-pointer hover:border-primary/40 transition-all duration-300">
+<div>
+<div class="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center mb-6 text-primary">
+<span class="material-symbols-outlined text-3xl">add_chart</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-2">New Prediction</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Initialize the KNN algorithm with a new data set for instant risk assessment.</p>
+</div>
+<div class="mt-8 flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-primary">Launch Interface</span>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</div>
+</div>
+</section>
+<!-- Key Metrics Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Metric Card: Total Predictions -->
+<div class="glass-panel p-6 rounded-xl space-y-4">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest">Total Predictions</span>
+<span class="material-symbols-outlined text-primary/60">monitoring</span>
+</div>
+<div>
+<h4 class="font-headline-lg text-headline-lg">12,842</h4>
+<div class="flex items-center gap-1 text-secondary mt-1">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+<span class="font-label-sm text-label-sm">+14.2%</span>
+</div>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3"></div>
+</div>
+</div>
+<!-- Metric Card: Approval Rate -->
+<div class="glass-panel p-6 rounded-xl space-y-4">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest">Approval Rate</span>
+<span class="material-symbols-outlined text-secondary/60">verified</span>
+</div>
+<div>
+<h4 class="font-headline-lg text-headline-lg">68.5%</h4>
+<div class="flex items-center gap-1 text-outline mt-1">
+<span class="font-label-sm text-label-sm">Consistent with Q3</span>
+</div>
+</div>
+<div class="flex items-end gap-1 h-8">
+<div class="flex-1 bg-secondary/20 h-[40%] rounded-sm"></div>
+<div class="flex-1 bg-secondary/20 h-[60%] rounded-sm"></div>
+<div class="flex-1 bg-secondary/20 h-[50%] rounded-sm"></div>
+<div class="flex-1 bg-secondary/20 h-[80%] rounded-sm"></div>
+<div class="flex-1 bg-secondary h-[90%] rounded-sm"></div>
+</div>
+</div>
+<!-- Metric Card: Avg Loan Amount -->
+<div class="glass-panel p-6 rounded-xl space-y-4">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest">Avg Loan Amount</span>
+<span class="material-symbols-outlined text-tertiary/60">payments</span>
+</div>
+<div>
+<h4 class="font-headline-lg text-headline-lg">$42.1k</h4>
+<div class="flex items-center gap-1 text-tertiary mt-1">
+<span class="material-symbols-outlined text-xs">trending_down</span>
+<span class="font-label-sm text-label-sm">-2.4%</span>
+</div>
+</div>
+<div class="prediction-line h-1 w-full rounded-full"></div>
+</div>
+<!-- Metric Card: Data Accuracy -->
+<div class="glass-panel p-6 rounded-xl space-y-4">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest">Confidence Score</span>
+<span class="material-symbols-outlined text-primary/60">precision_manufacturing</span>
+</div>
+<div>
+<h4 class="font-headline-lg text-headline-lg">94.8%</h4>
+<div class="flex items-center gap-1 text-secondary mt-1">
+<span class="material-symbols-outlined text-xs">check_circle</span>
+<span class="font-label-sm text-label-sm">High Reliability</span>
+</div>
+</div>
+<div class="grid grid-cols-10 gap-0.5">
+<div class="h-2 bg-primary rounded-l-full"></div>
+<div class="h-2 bg-primary"></div>
+<div class="h-2 bg-primary"></div>
+<div class="h-2 bg-primary"></div>
+<div class="h-2 bg-primary"></div>
+<div class="h-2 bg-primary"></div>
+<div class="h-2 bg-primary"></div>
+<div class="h-2 bg-primary"></div>
+<div class="h-2 bg-primary"></div>
+<div class="h-2 bg-surface-container-highest rounded-r-full"></div>
+</div>
+</div>
+</section>
+<!-- Bottom Content: Recent Activity & Visualizations -->
+<section class="grid grid-cols-1 lg:grid-cols-5 gap-gutter">
+<!-- Recent Activity List -->
+<div class="lg:col-span-3 glass-panel rounded-xl flex flex-col overflow-hidden">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md">Recent Activity</h3>
+<button class="text-primary font-label-md text-label-md hover:underline">View All</button>
+</div>
+<div class="flex-1 overflow-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low/50">
+<tr class="font-label-sm text-label-sm text-outline uppercase tracking-wider">
+<th class="px-6 py-4">Client ID</th>
+<th class="px-6 py-4">Requested</th>
+<th class="px-6 py-4">Risk Level</th>
+<th class="px-6 py-4 text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<tr class="hover:bg-surface-variant/20 transition-colors">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">LP-99823</span>
+<span class="text-xs text-outline">Mortgage Refinance</span>
+</div>
+</td>
+<td class="px-6 py-4 font-label-md text-label-md">$342,000</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-full bg-surface-container-highest h-1.5 w-16 rounded-full">
+<div class="bg-secondary h-full w-[20%] rounded-full"></div>
+</div>
+<span class="text-xs text-secondary">Low</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="px-3 py-1 rounded-full border border-secondary/50 text-secondary bg-secondary/10 text-xs font-bold font-label-sm">Approved</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-variant/20 transition-colors">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">LP-99824</span>
+<span class="text-xs text-outline">Business Loan</span>
+</div>
+</td>
+<td class="px-6 py-4 font-label-md text-label-md">$85,000</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-full bg-surface-container-highest h-1.5 w-16 rounded-full">
+<div class="bg-tertiary h-full w-[75%] rounded-full"></div>
+</div>
+<span class="text-xs text-tertiary">High</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="px-3 py-1 rounded-full border border-error/50 text-error bg-error/10 text-xs font-bold font-label-sm">Denied</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-variant/20 transition-colors">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">LP-99825</span>
+<span class="text-xs text-outline">Personal Credit</span>
+</div>
+</td>
+<td class="px-6 py-4 font-label-md text-label-md">$12,000</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-full bg-surface-container-highest h-1.5 w-16 rounded-full">
+<div class="bg-primary h-full w-[45%] rounded-full"></div>
+</div>
+<span class="text-xs text-primary">Med</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+<span class="text-xs font-label-sm">Analyzing</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-variant/20 transition-colors">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">LP-99826</span>
+<span class="text-xs text-outline">Auto Loan</span>
+</div>
+</td>
+<td class="px-6 py-4 font-label-md text-label-md">$28,500</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-full bg-surface-container-highest h-1.5 w-16 rounded-full">
+<div class="bg-secondary h-full w-[30%] rounded-full"></div>
+</div>
+<span class="text-xs text-secondary">Low</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="px-3 py-1 rounded-full border border-secondary/50 text-secondary bg-secondary/10 text-xs font-bold font-label-sm">Approved</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Model Distribution Card -->
+<div class="lg:col-span-2 glass-panel rounded-xl p-8 space-y-8 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md mb-2">Algorithm Insights</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">The current KNN model is favoring debt-to-income ratios and credit history stability over secondary collateral markers.</p>
+</div>
+<div class="relative w-48 h-48 mx-auto">
+<!-- Custom CSS "Pie Chart" representation -->
+<div class="w-full h-full rounded-full border-[12px] border-surface-container-highest flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 border-[12px] border-primary border-r-transparent border-b-transparent -rotate-12"></div>
+<div class="flex flex-col items-center">
+<span class="text-headline-md font-bold">KNN v4</span>
+<span class="text-label-sm text-outline uppercase tracking-widest">Active</span>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="font-label-md text-label-md">Credit Score</span>
+</div>
+<span class="font-label-md text-label-md font-bold">42%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+<span class="font-label-md text-label-md">Debt Ratio</span>
+</div>
+<span class="font-label-md text-label-md font-bold">28%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-tertiary"></div>
+<span class="font-label-md text-label-md">Others</span>
+</div>
+<span class="font-label-md text-label-md font-bold">30%</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="flex flex-col md:flex-row justify-between items-center px-gutter ml-64 w-[calc(100%-16rem)] py-stack-md mt-auto border-t border-outline-variant bg-surface-container-lowest text-outline font-label-sm text-label-sm">
+<p class="font-label-md text-label-md text-on-surface-variant">© 2024 LoanPredict AI. All rights reserved.</p>
+<div class="flex gap-gutter mt-4 md:mt-0">
+<a class="hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-on-surface transition-colors" href="#">Legal Disclosures</a>
+<a class="hover:text-on-surface transition-colors" href="#">Contact Support</a>
+</div>
+</footer>
+<!-- Interactive Layer: Atmospheric Canvas -->
+<div class="fixed inset-0 pointer-events-none opacity-20 z-0" id="particle-canvas"></div>
+<script>
+        // Micro-interaction for the data charts
+        document.querySelectorAll('.glass-panel').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('shadow-[0_0_20px_rgba(192,193,255,0.1)]');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('shadow-[0_0_20px_rgba(192,193,255,0.1)]');
+            });
+        });
+
+        // Background Animation Logic (Simple floating dots to simulate "data points")
+        const canvas = document.getElementById('particle-canvas');
+        for (let i = 0; i < 30; i++) {
+            const dot = document.createElement('div');
+            const size = Math.random() * 3 + 1;
+            dot.className = 'absolute bg-primary rounded-full blur-[1px]';
+            dot.style.width = size + 'px';
+            dot.style.height = size + 'px';
+            dot.style.left = Math.random() * 100 + '%';
+            dot.style.top = Math.random() * 100 + '%';
+            dot.style.opacity = Math.random() * 0.5 + 0.1;
+            dot.animate([
+                { transform: 'translateY(0) translateX(0)', opacity: 0 },
+                { transform: `translateY(${(Math.random() - 0.5) * 100}px) translateX(${(Math.random() - 0.5) * 100}px)`, opacity: 0.5 },
+                { transform: 'translateY(0) translateX(0)', opacity: 0 }
+            ], {
+                duration: 10000 + Math.random() * 5000,
+                iterations: Infinity,
+                easing: 'ease-in-out'
+            });
+            canvas.appendChild(dot);
+        }
+    </script>
+</body></html>
